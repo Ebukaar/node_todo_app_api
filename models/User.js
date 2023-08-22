@@ -15,6 +15,12 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    lastLoggedIn: {
+        type: Date,
+    },
+    lastLoggedOut: {
+        type: Date,
     }
 });
 

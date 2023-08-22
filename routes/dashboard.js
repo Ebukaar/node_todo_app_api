@@ -5,7 +5,9 @@ const verifyToken = require("../middleware/verifyToken");
 router.get("/dashboard", verifyToken, async (req, res) => {
   try {
     //We will only fetch todos associated with the logged in user
-  const userTodos = await Todo.find({ user: req.user.userId });
+  const userTodos = await Todo.find({ user: req.user.userId })
+                              .populate('user', 'username email _id')
+                              .exec();
 
   // Return the todo as JSON
   res.json({ todos: userTodos });
